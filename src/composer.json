@@ -1,0 +1,16 @@
+{
+    "name": "p.gigel/wiederholungsprojekt",
+    "autoload": {
+        "psr-4": {
+            "PGigel\\Wiederholungsprojekt\\": "./",
+            "core\\" : "core/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Paul Gigel",
+            "email": "p.gigel@bbw-fi.de"
+        }
+    ],
+    "require": {}
+}

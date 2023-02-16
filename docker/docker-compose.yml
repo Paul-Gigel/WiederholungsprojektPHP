@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: app
+    restart: always
+    ports:
+      - "9003:9003"
+    working_dir: /var/www/
+    volumes:
+      - ../../Wiederholungsprojekt/src:/var/www
+  migration_app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: migration_app
+    restart: always
+    ports:
+      - "9004:9003"
+    working_dir: /var/www
+    volumes:
+      - ../../Wiederholungsprojekt/migration:/var/www
+  nginx:
+    image: nginx:1.19-alpine
+    container_name: nginx
+    restart: always
+    ports:
+      - "8000:80"
+    volumes:
+      - ../../Wiederholungsprojekt/src:/var/www
+      - ./nginx:/etc/nginx/conf.d
+  migration_nginx:
+    image: nginx:1.19-alpine
+    container_name: migration_nginx
+    restart: always
+    ports:
+      - "8001:80"
+    volumes:
+      - ../../Wiederholungsprojekt/migration:/var/www
+      - ./migration_nginx:/etc/nginx/conf.d
+  db:
+    image: mysql:5.7
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: aA1234Aa
+      MYSQL_DATABASE: mvc-db
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_user_pass
+    ports:
+      - "6033:3306"
+    volumes:
+      - ../runtime/dbdata:/var/lib/mysql
+volumes:
+  dbdata:
+
+
+  #docker exec -it personalwebsite-db  mysql -uroot -p
+  # /var/run/mysqld/mysqld.sock
+  #/usr/local/etc/php

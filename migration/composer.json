@@ -1,0 +1,16 @@
+{
+    "name": "p.gigel/migration",
+    "autoload": {
+        "psr-4": {
+            "PGigel\\Migration\\": "./",
+            "core\\" : "core/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Paul Gigel",
+            "email": "p.gigel@bbw-fi.de"
+        }
+    ],
+    "require": {}
+}
