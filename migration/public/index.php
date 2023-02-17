@@ -10,4 +10,9 @@ $config = [
 ];
 $db = new Database($config);
 echo $db->createMigrationTable();
-var_dump($db->testConnection());
+
+#require_once "../migrations/Test.php";
+#$TestInstance = new Test();
+#$TestInstance->test();
+
+$db->applyMigration();
